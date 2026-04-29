@@ -1,0 +1,7 @@
+[tools]
+node = "22.18.0"
+firebase = "14.15.0"
+terraform = "1.13.1"
+gcloud = "536.0.1"
+gh = "2.79.0"
+jq = "1.8.1"

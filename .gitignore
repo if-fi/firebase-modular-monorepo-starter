@@ -1,0 +1,12 @@
+node_modules/
+lib/
+dist/
+coverage/
+reports/
+.DS_Store
+*.log
+*.tsbuildinfo
+.env
+.env.*
+.firebase/
+.idea

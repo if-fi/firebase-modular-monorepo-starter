@@ -1,0 +1,23 @@
+{
+  "name": "firebase-modular-monorepo-starter",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Starter template for a modular Firebase Cloud Functions backend using npm workspaces.",
+  "license": "MIT",
+  "engines": {
+    "node": "22"
+  },
+  "workspaces": [
+    "projects/*"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "build:watch": "tsc -b -w",
+    "typecheck": "tsc -b --pretty false",
+    "serve": "firebase emulators:start --only functions,firestore,pubsub",
+    "test": "echo 'No tests yet' && exit 0"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}
