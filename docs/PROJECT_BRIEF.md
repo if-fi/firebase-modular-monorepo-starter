@@ -17,10 +17,10 @@ not just theoretical.
 
 ## Example Product
 
-Use a simple booking platform as the example domain.
+Use a simple pet hotel/daycare booking backend as the example domain.
 
-The product lets users find available slots, create a booking, cancel a booking, receive a
-confirmation notification, and have stale pending bookings cleaned up automatically.
+The product lets users check availability, request a stay for a pet, cancel a stay, receive a
+confirmation notification, and have stale pending requests cleaned up automatically.
 
 This domain is useful because it is understandable without domain-specific banking knowledge, while
 still having real backend concerns:
@@ -97,11 +97,11 @@ firebase-functions-modular-backend/
         index.ts
         endpoints/
           api/
-            slotsList.ts
-            bookingCreate.ts
-            bookingCancel.ts
+            availabilityList.ts
+            stayRequestCreate.ts
+            stayCancel.ts
           pubsub/
-            bookingConfirm.ts
+            stayConfirm.ts
           auto_triggered/
             releaseExpiredHolds.ts
         orm/
@@ -155,16 +155,17 @@ Exports:
 
 Endpoints:
 
-- `api_booking/slotsList`
-- `api_booking/bookingCreate`
-- `api_booking/bookingCancel`
-- `subscribers_booking/bookingConfirm`
+- `api_booking/availabilityList`
+- `api_booking/stayRequestCreate`
+- `api_booking/stayCancel`
+- `subscribers_booking/stayConfirm`
 - scheduled cleanup for stale booking holds
 
 Firestore collections:
 
-- `slots`
-- `bookings`
+- `availability`
+- `stays`
+- optional: `pets`, `petOwners`
 
 ### `projects/notifications`
 
@@ -189,15 +190,15 @@ to integrate with an email or SMS provider.
 
 ## Main Flow
 
-1. The client calls `api_booking/slotsList`.
-2. The client calls `api_booking/bookingCreate`.
-3. The booking workspace validates the request and writes a pending booking through its ORM.
-4. The booking workspace publishes `NotifyBookingReadyToConfirm`.
-5. `subscribers_booking/bookingConfirm` receives the Pub/Sub push message.
-6. The booking subscriber confirms the booking and publishes `NotifyNotificationReadyToSend`.
+1. The client calls `api_booking/availabilityList`.
+2. The client calls `api_booking/stayRequestCreate`.
+3. The booking workspace validates the request and writes a pending stay request through its ORM.
+4. The booking workspace publishes `NotifyStayReadyToConfirm`.
+5. `subscribers_booking/stayConfirm` receives the Pub/Sub push message.
+6. The booking subscriber confirms the stay and publishes `NotifyNotificationReadyToSend`.
 7. `subscribers_notifications/notificationSend` stores a notification record.
 8. The client can call `api_notifications/notificationList`.
-9. A scheduled function periodically releases stale pending bookings.
+9. A scheduled function periodically releases stale pending stay requests.
 
 This single flow demonstrates callables, Firestore, Pub/Sub, subscribers, scheduled functions,
 workspace boundaries, and shared contracts.
@@ -226,18 +227,18 @@ Internal endpoints are registered through explicit route tables:
 
 ```ts
 const apiRoutes = {
-    slotsList: {
-        load: () => import("./endpoints/api/slotsList"),
-        handler: (module) => module.slotsList,
-    },
-    bookingCreate: {
-        load: () => import("./endpoints/api/bookingCreate"),
-        handler: (module) => module.bookingCreate,
-    },
-    bookingCancel: {
-        load: () => import("./endpoints/api/bookingCancel"),
-        handler: (module) => module.bookingCancel,
-    },
+  availabilityList: {
+    load: () => import("./endpoints/api/availabilityList"),
+    handler: (module) => module.availabilityList,
+  },
+  stayRequestCreate: {
+    load: () => import("./endpoints/api/stayRequestCreate"),
+    handler: (module) => module.stayRequestCreate,
+  },
+  stayCancel: {
+    load: () => import("./endpoints/api/stayCancel"),
+    handler: (module) => module.stayCancel,
+  },
 } as const;
 ```
 
@@ -318,10 +319,10 @@ that a domain can be deployed independently.
 
 The repo should include exercises that mirror real contribution tasks:
 
-1. Add a new callable endpoint: `api_booking/bookingGet`.
+1. Add a new callable endpoint: `api_booking/stayGet`.
 2. Add a new Firestore field through the booking ORM.
 3. Add validation and typed errors.
-4. Publish a Pub/Sub message after a booking state change.
+4. Publish a Pub/Sub message after a stay state change.
 5. Add a new subscriber in `notifications`.
 6. Add a focused Jest test.
 7. Run everything locally with emulators.

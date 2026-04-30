@@ -4,6 +4,8 @@ Starter template for a modular Firebase Cloud Functions backend using npm worksp
 
 This repo is meant for onboarding and as a reference implementation for structuring Firebase Functions as a modular backend (multiple independent workspaces + a single shared `_common`).
 
+Example domain used in docs and samples: a pet hotel/daycare booking backend.
+
 ## What This Repo Demonstrates
 
 - npm workspaces with multiple backend domains under `projects/`
