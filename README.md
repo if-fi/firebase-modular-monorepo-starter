@@ -16,6 +16,12 @@ Example domain used in docs and samples: a pet hotel/daycare booking backend.
 
 See `docs/PROJECT_BRIEF.md` for the full project idea and roadmap.
 
+Docs:
+
+- `docs/GUARDRAILS.md` (architecture rules)
+- `docs/WORKFLOW.md` (spec-driven loop)
+- `docs/IMPLEMENTATION_PLAN.md` (step-by-step roadmap)
+
 ## Prerequisites
 
 - Optional (recommended): `mise install`

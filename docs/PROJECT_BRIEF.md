@@ -188,6 +188,16 @@ Firestore collections:
 The notification sender can be simulated. The point is to demonstrate an async domain boundary, not
 to integrate with an email or SMS provider.
 
+### Future: `projects/admin` (optional)
+
+If we add a third deployable domain, prefer an `admin` workspace over adding more complexity to
+`booking` and `notifications`.
+
+Purpose:
+
+- staff-only/admin endpoints (set daily capacity, list stays, approve/deny)
+- demonstrate a separate Firebase codebase with an independent deploy cadence and blast radius
+
 ## Main Flow
 
 1. The client calls `api_booking/availabilityList`.
