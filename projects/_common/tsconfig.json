@@ -5,14 +5,14 @@
     "strict": true,
     "target": "es2022",
     "outDir": "lib",
+    "rootDir": "./",
     "declaration": true,
     "sourceMap": true,
+    "composite": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
   },
-  "files": [],
-  "references": [
-    { "path": "./projects/_common" },
-    { "path": "./projects/booking" }
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["**/__tests__/**", "tests/**"],
+  "references": []
 }
