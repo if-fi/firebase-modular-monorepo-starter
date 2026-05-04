@@ -28,3 +28,26 @@ Content-Type: application/json
     "capacity": 10
   }
 }
+
+### Booking: stayRequestCreate (anonymous playground helper)
+POST {{function_url}}/api_booking/stayRequestCreate
+Content-Type: application/json
+
+{
+  "data": {
+    "uid": "demo-user",
+    "petName": "Milo",
+    "startDate": "2026-05-01",
+    "endDate": "2026-05-03"
+  }
+}
+
+### Booking: staysList
+POST {{function_url}}/api_booking/staysList
+Content-Type: application/json
+
+{
+  "data": {
+    "limit": 20
+  }
+}

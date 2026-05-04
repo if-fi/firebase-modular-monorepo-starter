@@ -56,6 +56,35 @@ export type BookingAvailabilitySeedOutput = {
   toDate: string;
   daysWritten: number;
 };
+
+export type BookingStayRequestCreateInput = {
+  uid?: string; // optional for V1 playground; defaults to "demo-user"
+  petName: string;
+  startDate: string; // YYYY-MM-DD
+  endDate: string; // YYYY-MM-DD
+};
+
+export type BookingStayRequestCreateOutput = {
+  stayId: string;
+  status: "pending";
+};
+
+export type BookingStaysListInput = {
+  limit?: number;
+};
+
+export type BookingStaysListOutput = {
+  stays: Array<{
+    stayId: string;
+    uid: string;
+    petName: string;
+    startDate: string;
+    endDate: string;
+    status: "pending" | "confirmed" | "cancelled" | "expired";
+    createdAt?: unknown;
+  }>;
+};
+
 export interface BookingApiEndpointTypeMap extends ApiEndpointTypeMap {
   [BOOKING_API_ENDPOINTS.hello]: ApiEndpointDef<{}, { ok: true; message: string }, "anonymous">;
   [BOOKING_API_ENDPOINTS.availabilityList]: ApiEndpointDef<
@@ -63,12 +92,22 @@ export interface BookingApiEndpointTypeMap extends ApiEndpointTypeMap {
     BookingAvailabilityListOutput,
     "anonymous"
   >;
-  // Planned (spec-first) endpoints:
-  [BOOKING_API_ENDPOINTS.stayRequestCreate]: ApiEndpointDef<any, any, "required">;
-  [BOOKING_API_ENDPOINTS.stayCancel]: ApiEndpointDef<any, any, "required">;
   [BOOKING_API_ENDPOINTS.availabilitySeed]: ApiEndpointDef<
     BookingAvailabilitySeedInput,
     BookingAvailabilitySeedOutput,
     "anonymous"
   >;
+  [BOOKING_API_ENDPOINTS.stayRequestCreate]: ApiEndpointDef<
+    BookingStayRequestCreateInput,
+    BookingStayRequestCreateOutput,
+    "anonymous"
+  >;
+  [BOOKING_API_ENDPOINTS.staysList]: ApiEndpointDef<
+    BookingStaysListInput,
+    BookingStaysListOutput,
+    "anonymous"
+  >;
+
+  // Planned (spec-first) endpoints (to be implemented):
+  [BOOKING_API_ENDPOINTS.stayCancel]: ApiEndpointDef<any, any, "anonymous">;
 }

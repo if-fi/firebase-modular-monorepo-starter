@@ -47,4 +47,14 @@ const apiRoutes = {
     handler: (m: any) => m.availabilitySeed,
     anonymous: true,
   },
+  stayRequestCreate: {
+    load: () => import("./endpoints/api/stayRequestCreate"),
+    handler: (m: any) => m.stayRequestCreate,
+    anonymous: true,
+  },
+  staysList: {
+    load: () => import("./endpoints/api/staysList"),
+    handler: (m: any) => m.staysList,
+    anonymous: true,
+  },
 } as const;
