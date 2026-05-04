@@ -17,12 +17,30 @@
         "*.log",
         ".DS_Store"
       ]
+    },
+    {
+      "source": "projects/notifications",
+      "codebase": "notifications",
+      "ignore": [
+        "**/node_modules/**",
+        "**/__tests__/**",
+        "**/tests/**",
+        "**/*.test.*",
+        "**/*.spec.*",
+        "**/*.snap",
+        "**/*.ts",
+        "**/*.js.map",
+        "tsconfig.json",
+        "package-lock.json",
+        "*.log",
+        ".DS_Store"
+      ]
     }
   ],
   "emulators": {
     "functions": { "port": 5001 },
-    "firestore": { "host": "0.0.0.0", "port": 8080 },
-    "pubsub": { "port": 8085 },
+    "firestore": { "host": "0.0.0.0", "port": 8880 },
+    "pubsub": { "port": 8086 },
     "ui": { "enabled": true }
   },
   "firestore": {

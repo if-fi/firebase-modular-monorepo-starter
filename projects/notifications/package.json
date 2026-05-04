@@ -1,0 +1,23 @@
+{
+  "name": "notifications",
+  "private": true,
+  "version": "0.1.0",
+  "main": "lib/src/index.js",
+  "types": "lib/src/index.d.ts",
+  "engines": {
+    "node": "22"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "build:watch": "tsc -b -w",
+    "deploy": "firebase deploy --only functions:notifications"
+  },
+  "dependencies": {
+    "@starter/common": "0.1.0",
+    "firebase-admin": "^13.6.1",
+    "firebase-functions": "^7.0.5"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}
