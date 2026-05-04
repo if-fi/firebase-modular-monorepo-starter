@@ -20,7 +20,10 @@ export const api_booking = onCall(async (request) => {
     request,
     routes: apiRoutes,
     unauthorized: get401Error,
-    executeOnCallFunction: async (_funcName, _request, executableFunc) => {
+    executeOnCallFunction: async (_funcName, _request, executableFunc, isAnonymous) => {
+      if (!isAnonymous && !_request.auth) {
+        return Promise.reject(get401Error("Endpoint requires authentication"));
+      }
       return await executableFunc(_request);
     },
   });
@@ -30,6 +33,13 @@ const apiRoutes = {
   hello: {
     load: () => import("./endpoints/api/hello"),
     handler: (m: any) => m.hello,
+    anonymous: true,
+  },
+  availabilityList: {
+    load: () => import("./endpoints/api/availabilityList"),
+    handler: (m: any) => m.availabilityList,
+    // V1: keep this callable easy to test via curl in emulators.
+    // When we introduce auth in the starter, flip this to `false` and update the spec accordingly.
     anonymous: true,
   },
 } as const;
