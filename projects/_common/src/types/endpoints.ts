@@ -45,6 +45,17 @@ export type BookingAvailabilityListOutput = {
   days: Array<{ date: string; capacity: number; reservedCount: number }>;
 };
 
+export type BookingAvailabilitySeedInput = {
+  fromDate: string; // YYYY-MM-DD
+  days: number;
+  capacity: number;
+};
+
+export type BookingAvailabilitySeedOutput = {
+  fromDate: string;
+  toDate: string;
+  daysWritten: number;
+};
 export interface BookingApiEndpointTypeMap extends ApiEndpointTypeMap {
   [BOOKING_API_ENDPOINTS.hello]: ApiEndpointDef<{}, { ok: true; message: string }, "anonymous">;
   [BOOKING_API_ENDPOINTS.availabilityList]: ApiEndpointDef<
@@ -55,4 +66,9 @@ export interface BookingApiEndpointTypeMap extends ApiEndpointTypeMap {
   // Planned (spec-first) endpoints:
   [BOOKING_API_ENDPOINTS.stayRequestCreate]: ApiEndpointDef<any, any, "required">;
   [BOOKING_API_ENDPOINTS.stayCancel]: ApiEndpointDef<any, any, "required">;
+  [BOOKING_API_ENDPOINTS.availabilitySeed]: ApiEndpointDef<
+    BookingAvailabilitySeedInput,
+    BookingAvailabilitySeedOutput,
+    "anonymous"
+  >;
 }

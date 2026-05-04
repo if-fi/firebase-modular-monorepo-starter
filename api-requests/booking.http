@@ -16,3 +16,15 @@ Content-Type: application/json
     "toDate": "2026-05-03"
   }
 }
+
+### Booking: availabilitySeed (anonymous playground helper)
+POST {{function_url}}/api_booking/availabilitySeed
+Content-Type: application/json
+
+{
+  "data": {
+    "fromDate": "2026-05-01",
+    "days": 7,
+    "capacity": 10
+  }
+}

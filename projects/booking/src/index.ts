@@ -42,4 +42,9 @@ const apiRoutes = {
     // When we introduce auth in the starter, flip this to `false` and update the spec accordingly.
     anonymous: true,
   },
+  availabilitySeed: {
+    load: () => import("./endpoints/api/availabilitySeed"),
+    handler: (m: any) => m.availabilitySeed,
+    anonymous: true,
+  },
 } as const;
