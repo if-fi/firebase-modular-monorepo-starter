@@ -1,0 +1,9 @@
+### Notifications: subscriber ping (placeholder handler)
+POST {{function_url}}/subscribers_notifications/notificationSend
+Content-Type: application/json
+
+{
+  "message": {
+    "data": ""
+  }
+}

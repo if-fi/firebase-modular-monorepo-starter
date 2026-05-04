@@ -1,0 +1,18 @@
+### Booking: hello (anonymous)
+POST {{function_url}}/api_booking/hello
+Content-Type: application/json
+
+{
+  "data": {}
+}
+
+### Booking: availabilityList (anonymous for now)
+POST {{function_url}}/api_booking/availabilityList
+Content-Type: application/json
+
+{
+  "data": {
+    "fromDate": "2026-05-01",
+    "toDate": "2026-05-03"
+  }
+}
