@@ -29,15 +29,15 @@ Optional V2:
 
 ### 1) Lock V1 contracts (fast)
 
-- [ ] Write/confirm `docs/CONTRACTS_V1.md` (Firestore schema + Pub/Sub topics/payloads + naming).
-- [ ] Add specs in `docs/specs/` for the first booking endpoints.
+- [x] Write/confirm `docs/CONTRACTS_V1.md` (Firestore schema + Pub/Sub topics/payloads + naming).
+- [x] Add specs in `docs/specs/` for the first booking endpoints.
 
 ### 2) Booking callable endpoints + ORM (checkpoint A)
 
-- [ ] Implement `api_booking/availabilityList` (read-only).
-- [ ] Implement `api_booking/stayRequestCreate` (creates pending stay via ORM, sets `expiresAt`, publishes `stay.ready_to_confirm`).
+- [x] Implement `api_booking/availabilityList` (read-only).
+- [x] Implement `api_booking/stayRequestCreate` (creates pending stay via ORM, sets `expiresAt`, publishes `stay.ready_to_confirm`).
 - [ ] Implement `api_booking/stayCancel` (updates status via ORM, publishes `notification.ready_to_send`).
-- [ ] Create booking ORM modules under `projects/booking/src/orm/**` and route all writes through them.
+- [x] Create booking ORM modules under `projects/booking/src/orm/**` and route all writes through them.
 
 ### 3) Booking Pub/Sub subscriber + confirm handler (checkpoint B)
 
@@ -67,6 +67,14 @@ Optional V2:
   - Pub/Sub publish helper (PII-safe logging, trace attributes)
   - executor wrappers (`executeOnCallFunction`, `executeSubFunction`) trimmed for the starter
   - keep routing explicit via route tables
+
+Validation note (planned):
+
+- Subscriber/task gateways should validate centrally (e.g. `executeSubFunction` parses and validates the Pub/Sub push payload before calling the handler).
+- In this starter repo, we should add a similar centralized pattern for callables so endpoint modules do not repeat ad-hoc `validateParams(...)` logic.
+  Options include:
+  - a shared `Validator<T>` function type + `executeOnCallFunction` that validates before calling the handler
+  - Zod-based schemas attached to the central endpoint registry (best path toward OpenAPI generation)
 
 ### 7) Tests (checkpoint F)
 

@@ -30,7 +30,9 @@ export type ApiEndpointTypeMap = Record<string, ApiEndpointDef<any, any, any>>;
 export const BOOKING_API_ENDPOINTS = {
   hello: "hello",
   availabilityList: "availabilityList",
+  availabilitySeed: "availabilitySeed",
   stayRequestCreate: "stayRequestCreate",
+  staysList: "staysList",
   stayCancel: "stayCancel",
 } as const;
 
