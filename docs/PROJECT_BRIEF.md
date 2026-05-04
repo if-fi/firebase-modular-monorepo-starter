@@ -2,8 +2,8 @@
 
 This document describes a proposed public or semi-public example repository for teaching a modular
 Firebase Cloud Functions backend architecture. The goal is to give new developers a smaller system
-that feels familiar before they work in a larger production backend, while also being useful to
-other teams evaluating Firebase Functions as a maintainable backend platform.
+that feels familiar before they work in a larger backend, while also being useful to other teams
+evaluating Firebase Functions as a maintainable backend platform.
 
 ## Purpose
 
@@ -287,10 +287,10 @@ Include:
 Avoid in the first version:
 
 - VPC connectors
-- complex production IAM matrices
+- complex IAM matrices
 - real third-party provider credentials
 - monitoring and alerting stacks
-- multi-environment production hardening
+- multi-environment hardening
 
 The repo can document how those pieces would be added later.
 
@@ -374,7 +374,7 @@ The project is successful if a new developer can:
 - trace a request from gateway to endpoint to ORM
 - trace an async flow across Pub/Sub
 - deploy one workspace independently
-- recognize the same architectural patterns in the larger production backend
+- recognize the same architectural patterns in a larger backend
 
 The public value is that another team can use the repo as a reference for structuring Firebase
 Functions as a modular backend instead of a single unstructured functions project.
