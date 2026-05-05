@@ -10,3 +10,4 @@ reports/
 .env.*
 .firebase/
 .idea
+http-client.private.env.json
