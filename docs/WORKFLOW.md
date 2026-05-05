@@ -22,8 +22,8 @@ This repo is designed for a fast feedback loop without losing architectural disc
 
 Keep commits small and outcome-driven. Examples:
 
-- `feat(booking): availabilityList endpoint`
-- `feat(booking): stayRequestCreate endpoint`
-- `feat(notifications): notificationSend subscriber`
-- `docs: add spec for stayConfirm`
+- `Add booking availabilityList endpoint`
+- `Add booking stayRequestCreate endpoint`
+- `Add notifications notificationSend subscriber`
+- `Add spec for stayConfirm`
 
